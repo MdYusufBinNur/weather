@@ -9,155 +9,36 @@
 
     </v-row>
     <v-row no-gutters>
-     <v-col cols="12">
-       <v-card-subtitle class="text-capitalize px-3">
-         Order Section
-       </v-card-subtitle>
-     </v-col>
-      <v-col cols="12" md="4" lg="4" class="pa-1">
-        <v-card flat class="px-2">
-          <v-list>
-            <v-list-item>
-              <v-list-item-action class="mr-4">
-                <v-btn fab depressed class="accentlight" small>
-                  <v-icon color="secondary">mdi-accounts</v-icon>
-                </v-btn>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item class="px-0">
-                  <h3>
-                    Today's Schedule
-                  </h3>
-                </v-list-item>
-                <span style="margin-top: -8px; font-size: 12px">
-                  {{ data.today }}
-                </span>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="4" lg="4" class="pa-1">
-        <v-card flat class="px-2">
-          <v-list>
-            <v-list-item>
-              <v-list-item-action class="mr-4">
-                <v-btn fab depressed class="accentlight" small>
-                  <v-icon color="secondary">mdi-accounts</v-icon>
-                </v-btn>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item class="px-0">
-                  <h3>
-                    Active Order
-                  </h3>
-                </v-list-item>
-                <span style="margin-top: -8px; font-size: 12px">
-                  {{ data.processing }}
-                </span>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="4" lg="4" class="pa-1">
-        <v-card flat class="px-2">
-          <v-list>
-            <v-list-item>
-              <v-list-item-action class="mr-4">
-                <v-btn fab depressed class="accentlight" small>
-                  <v-icon color="secondary">mdi-accounts</v-icon>
-                </v-btn>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item class="px-0">
-                  <h3>
-                    Total Orders
-                  </h3>
-                </v-list-item>
-                <span style="margin-top: -8px; font-size: 12px">
-                  {{ data.all }}
-                </span>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="4" lg="4" class="pa-1">
-        <v-card flat class="px-2">
-          <v-list>
-            <v-list-item>
-              <v-list-item-action class="mr-4">
-                <v-btn fab depressed class="accentlight" small>
-                  <v-icon color="secondary">mdi-accounts</v-icon>
-                </v-btn>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item class="px-0">
-                  <h3>
-                    Delivered
-                  </h3>
-                </v-list-item>
-                <span style="margin-top: -8px; font-size: 12px">
-                  {{ data.delivered }}
-                </span>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row no-gutters>
-      <v-col cols="12">
+      <v-col cols="8">
         <v-card-subtitle class="text-capitalize px-3">
           User & Rider
         </v-card-subtitle>
-      </v-col>
-      <v-col cols="12" md="4" lg="4" class="pa-1">
-        <v-card flat class="px-2">
-          <v-list>
-            <v-list-item>
-              <v-list-item-action class="mr-4">
-                <v-btn fab depressed class="accentlight" small>
-                  <v-icon color="secondary">mdi-accounts</v-icon>
-                </v-btn>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item class="px-0">
-                  <h3>
-                    Total Users
-                  </h3>
-                </v-list-item>
-                <span style="margin-top: -8px; font-size: 12px">
+        <v-row>
+          <v-col cols="12" md="4" lg="2" sm="6" class="pa-1" v-for="(item,i) in items" :key="i">
+            <v-card flat class="px-2 primary" height="400px">
+              <v-list class="primary">
+                <v-list-item-action class="mr-4">
+                  <v-btn fab depressed class="accentlight" small>
+                    <v-icon color="secondary">mdi-accounts</v-icon>
+                  </v-btn>
+                </v-list-item-action>
+                <v-list-item>
+
+                  <v-list-item-content>
+                    <v-list-item class="px-0">
+                      <h3>
+                        Total Users
+                      </h3>
+                    </v-list-item>
+                    <span style="margin-top: -8px; font-size: 12px">
                   {{ data.users }}
                 </span>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="4" lg="4" class="pa-1">
-        <v-card flat class="px-2">
-          <v-list>
-            <v-list-item>
-              <v-list-item-action class="mr-4">
-                <v-btn fab depressed class="accentlight" small>
-                  <v-icon color="secondary">mdi-accounts</v-icon>
-                </v-btn>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item class="px-0">
-                  <h3>
-                    Total Riders
-                  </h3>
+                  </v-list-item-content>
                 </v-list-item>
-                <span style="margin-top: -8px; font-size: 12px">
-                  {{ data.riders }}
-                </span>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
+              </v-list>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
     <v-row dense class="pa-2">
@@ -354,7 +235,8 @@ export default {
         new_users: 0,
         dates: [],
         values: [],
-      }
+      },
+      items: []
     }
   },
   computed: {
@@ -388,10 +270,9 @@ export default {
     },
     initialize() {
       this.loading = true
-      this.$axios.get('dashboard-data')
+      this.$axios.get('weather')
         .then((response) => {
-          this.data = response.data.data
-          this.regBarData[0].data = response.data.data.values
+          this.items = response.data.data
         })
         .catch((error) => {
         })
