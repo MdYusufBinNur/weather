@@ -6,7 +6,6 @@
         <v-divider></v-divider
         >
       </v-col>
-
     </v-row>
     <v-row no-gutters>
       <v-col cols="8">
@@ -15,27 +14,36 @@
         </v-card-subtitle>
         <v-row>
           <v-col cols="12" md="4" lg="2" sm="6" class="pa-1" v-for="(item,i) in items" :key="i">
-            <v-card flat class="px-2 primary" height="400px">
-              <v-list class="primary">
-                <v-list-item-action class="mr-4">
-                  <v-btn fab depressed class="accentlight" small>
-                    <v-icon color="secondary">mdi-accounts</v-icon>
-                  </v-btn>
-                </v-list-item-action>
-                <v-list-item>
+            <v-card flat class="px-2 primary" height="266px" width="200px" style="border-radius: 10px">
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <div class="text-overline mb-4">
+                    OVERLINE
+                  </div>
+                  <v-list-item-title class="text-h5 mb-1">
+                    Headline 5
+                  </v-list-item-title>
+                  <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
 
-                  <v-list-item-content>
-                    <v-list-item class="px-0">
-                      <h3>
-                        Total Users
-                      </h3>
-                    </v-list-item>
-                    <span style="margin-top: -8px; font-size: 12px">
-                  {{ data.users }}
-                </span>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
+                <v-list-item-avatar
+                  tile
+                  size="80"
+                  color="grey"
+                ></v-list-item-avatar>
+              </v-list-item>
+
+              <v-card-actions>
+                <v-btn
+                  outlined
+                  rounded
+                  text
+                >
+                  Button
+                </v-btn>
+              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
