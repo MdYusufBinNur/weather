@@ -7,7 +7,7 @@
     class="mt-2"
     fixed
   >
-    <v-app-bar-nav-icon @click="openDrawer"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon v-if="bp.smAndDown" @click="openDrawer"></v-app-bar-nav-icon>
 
     <v-toolbar-items v-show="bp.mdAndUp">
     </v-toolbar-items>

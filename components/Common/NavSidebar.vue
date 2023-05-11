@@ -1,29 +1,41 @@
 <template>
-  <v-navigation-drawer v-model="drawer" fixed app overlay-color="green">
-    <v-list-item
-      class="pa-5 pb-1"
-      active-class="white"
-      color="white"
-    >
-      <v-list-item-title class="text-md-h5 black--text">
-        Service Admin
-      </v-list-item-title>
-    </v-list-item>
+  <v-navigation-drawer v-model="drawer" fixed app overlay-color="green" :mini-variant.sync="mini" mini-variant-width.sync="80px"
+                       permanent
+  >
+
+    <v-img contain :src="logo"  :aspect-ratio="mini ? 1 : 3" class="ma-4">
+
+    </v-img>
     <v-list rounded dense>
-      <NavigationItems
-        v-for="(item, i) in navItems"
-        :items="item.items"
-        :title="item.title"
-        :path="item.to"
-        :prepend-icon="item.icon"
-        :key="i"
-      />
+      <!--      <NavigationItems-->
+      <!--        v-for="(item, i) in navItems"-->
+      <!--        :items="item.items"-->
+      <!--        :title="item.title"-->
+      <!--        :path="item.to"-->
+      <!--        :prepend-icon="item.icon"-->
+      <!--        :key="i"-->
+      <!--      />-->
+      <v-list-item class="pr-2 pl-2">
+        <v-icon class="pl-0">
+          mdi-home
+        </v-icon>
+
+        <v-list-item-title class="pl-4">Dashboard</v-list-item-title>
+
+        <v-btn
+          icon
+          @click.stop="mini = !mini"
+        >
+          <v-icon>mdi-menu-left</v-icon>
+        </v-btn>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
 import NavigationItems from "@/components/Common/NavigationItems";
+import logo from 'static/logo.png'
 
 export default {
   name: 'NavSidebar',
@@ -34,10 +46,10 @@ export default {
   data() {
     return {
       drawer: true,
+      logo,
+      mini: true,
       navItems: [
         {title: 'Dashboard', icon: 'mdi-home', to: '/dashboard', items: null},
-        {title: 'Category', icon: 'mdi-svg', to: '/categories', items: null},
-        {title: 'Food Items', icon: 'mdi-format-list-bulleted', to: '/items', items: null},
         // {
         //   title: 'Order',
         //   path: null,

@@ -7,7 +7,7 @@
         </v-col>
         <v-col cols="3" align="right">
           <v-btn depressed right x-small rounded class="mt-5 mr-5">
-            {{ All }}
+            All
           </v-btn>
         </v-col>
       </v-row>
@@ -71,14 +71,23 @@ export default {
           bottom: '5%',
           containLabel: true,
         },
-        yAxis: {
-          type: 'value',
-        },
         xAxis: {
           type: 'category',
-          data: [],
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         },
-        series: [],
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: [120, 200, 150, 80, 70, 110, 130],
+            type: 'bar',
+            showBackground: true,
+            backgroundStyle: {
+              color: 'rgba(180, 180, 180, 0.2)'
+            }
+          }
+        ]
       },
       size: {
         width: 'auto',

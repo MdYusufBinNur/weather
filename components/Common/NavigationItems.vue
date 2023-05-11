@@ -10,7 +10,7 @@
 
     </template>
     <template v-slot:prependIcon>
-      <v-icon>
+      <v-icon small left>
         {{ prependIcon }}
       </v-icon>
     </template>
