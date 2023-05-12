@@ -3,7 +3,7 @@
     <v-card flat color="white">
       <v-row>
         <v-col cols="9">
-          <v-card-title>{{ chartTitle }}</v-card-title>
+          <v-card-title>Humidity (Last 24 hours)</v-card-title>
         </v-col>
         <v-col cols="3" align="right">
           <v-btn depressed right x-small rounded class="mt-5 mr-5">
@@ -12,9 +12,12 @@
         </v-col>
       </v-row>
       <v-row align="center" no-gutters class="d-flex justify-center">
-        <div :id="propertyId" :class="className"></div>
-        <v-card-text class="caption">
-          {{ chartDesc }}
+        <div id="propertyId123" :class="className"></div>
+        <v-card-text :class="'title ' + iconColor+'--text'">
+          <v-icon :color="iconColor" small>
+            mdi-chevron-up-circle-outline
+          </v-icon>
+          {{ chartDesc ? chartDesc : '' }}
         </v-card-text>
       </v-row>
     </v-card>
@@ -49,10 +52,21 @@ export default {
       required: false,
       type: String,
     },
+    highOrLow: {
+      required: false,
+      type: String
+    },
+    differentValue: {
+      required: false,
+      type: String
+    }
+
   },
   data() {
     return {
       weekly_btn: true,
+      iconName: 'mdi-chevron-down-circle-outline',
+      iconColor: '',
       barChartOption: {
         tooltip: {
           trigger: 'axis',
@@ -64,7 +78,7 @@ export default {
         legend: {
           right: 'right',
         },
-        color: ['#2C3040', '#6D7079', '#7D85A1'],
+        color: ['#4462d3', '#8096de', '#8096de'],
         grid: {
           left: '10%',
           right: '10%',
@@ -73,18 +87,18 @@ export default {
         },
         xAxis: {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data: []
         },
         yAxis: {
           type: 'value'
         },
         series: [
           {
-            data: [120, 200, 150, 80, 70, 110, 130],
+            data: [],
             type: 'bar',
             showBackground: true,
             backgroundStyle: {
-              color: 'rgba(180, 180, 180, 0.2)'
+              color: '#a5b7ef'
             }
           }
         ]
@@ -101,13 +115,22 @@ export default {
   methods: {
     initCharts() {
       const myChart = this.$echarts.init(
-        document.getElementById(this.propertyId)
+        document.getElementById('propertyId123')
       )
+
+      if (this.highOrLow === 'high') {
+        this.iconName = 'mdi-chevron-up-circle-outline'
+        this.iconColor = 'success'
+      } else {
+        this.iconName = 'mdi-chevron-down-circle-outline'
+        this.iconColor = 'error'
+      }
       // Start rendering
       this.barChartOption.xAxis.data = this.axisData
-      this.barChartOption.series = this.chartData
+      this.barChartOption.series[0].data = this.chartData
       myChart.setOption(this.barChartOption)
       myChart.resize(this.size)
+
     },
   },
 }
@@ -118,10 +141,12 @@ export default {
   width: 700px;
   height: 300px;
 }
+
 .weddingCharts {
   width: 500px;
   height: 250px;
 }
+
 .dashboardBarChart {
   width: 700px;
   height: 250px;

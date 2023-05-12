@@ -16,7 +16,7 @@
     <v-menu offset-y left transition="slide-y-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn text plain small rounded v-bind="attrs" class="px-0" v-on="on" style="background-color: transparent">
-          <v-avatar size="30" v-show="bp.mdAndUp">
+          <v-avatar size="30" v-show="bp.mdAndUp" class="mb-1">
             <v-img :src="'https://cdn.vuetifyjs.com/images/john.png'"></v-img>
           </v-avatar>
           <v-list-item-content v-show="bp.mdAndUp" class="px-0">
@@ -39,7 +39,7 @@
             selectable
           >
             <v-avatar size="40" v-show="bp.mdAndUp">
-              <v-img :src="'https://cdn.vuetifyjs.com/images/john.png'"></v-img>
+              <v-img :src="'https://cdn.vuetifyjs.com/images/john.png'" class="mb-1"></v-img>
             </v-avatar>
             <v-list-item-content v-show="bp.mdAndUp">
               <v-card-subtitle class="pa-0 px-2">
@@ -51,7 +51,7 @@
             </v-list-item-content>
 
           </v-list-item>
-          <v-divider/>
+          <v-divider class="mt-1"/>
           <v-list-item dense @click="logout">
             <v-list-item-avatar size="20">
               <v-img :src="logoutIcon" contain/>
