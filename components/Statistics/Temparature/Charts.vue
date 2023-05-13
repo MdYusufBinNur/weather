@@ -7,16 +7,13 @@
         </v-col>
         <v-col cols="3" align="right">
           <v-btn depressed right x-small rounded class="mt-5 mr-5">
-            All
+            {{ reportDate ? reportDate : '' }}
           </v-btn>
         </v-col>
       </v-row>
       <v-row align="center" no-gutters class="d-flex justify-center">
         <div :id="propertyId" :class="className"></div>
         <v-card-text :class="'title ' + iconColor+'--text'">
-          <v-icon :color="iconColor" small>
-            mdi-chevron-up-circle-outline
-          </v-icon>
           {{ chartDesc ? chartDesc : '' }}
         </v-card-text>
       </v-row>
@@ -28,6 +25,10 @@
 export default {
   name: "Charts",
   props: {
+    reportDate: {
+      req: false,
+      type: String
+    },
     cardTitle: {
       required : false,
       type:String

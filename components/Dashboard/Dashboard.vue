@@ -105,36 +105,46 @@
               </v-list-item>
             </v-list>
           </v-col>
+          <v-col cols="12" v-show="stateLoading">
+            <v-skeleton-loader
+              v-show="stateLoading"
+              type="article, actions"
+            ></v-skeleton-loader>
+          </v-col>
           <v-col cols="12">
             <charts
+              v-if="!stateLoading"
               property-id="smoothLineChart"
               class-name="dashboardLineChart"
-              :axis-data="data.dates"
-              :chart-data="data.regBarData"
+              :axis-data="temperature.hour"
+              :chart-data="temperature.value"
               card-title="Temperature (Last 24 hours)"
-
+              :report-date="report_date"
             />
           </v-col>
           <v-col cols="12">
             <charts
+              v-if="!stateLoading"
               property-id="normalLineChart"
               class-name="dashboardLineChart"
-              :axis-data="data.dates"
-              :chart-data="data.regBarData"
+              :axis-data="wind_speed.hour"
+              :chart-data="wind_speed.value"
               card-title="Wind (Last 24 hours)"
               smooth="smooth"
+              :report-date="report_date"
             />
           </v-col>
           <v-col cols="12">
             <bar-chart-component
-              chart-title="Per month order"
-              chart-desc="-13%"
+              v-if="!stateLoading"
+              chart-title="Humidity (Last 24 hours)"
               property-id="dashboardAccChart"
-              :axis-data="data.dates"
-              :chart-data="data.regBarData"
+              :axis-data="humidity.hour"
+              :chart-data="humidity.value"
               high-or-low="low"
               different-value="-13%"
               class-name="dashboardBarChart"
+              :report-date="report_date"
             />
           </v-col>
         </v-row>
@@ -163,6 +173,7 @@ export default {
   data() {
     return {
       loading: false,
+      stateLoading: false,
       selectedItem: null,
       date: null,
       menu: false,
@@ -173,6 +184,19 @@ export default {
         dates: ['00', '02', '04', '06', '08', '10', '12', '14', '16', '18', '20', '22', '24'],
         regBarData: [150, 230, 224, 218, 135, 147, 150, 230, 224, 218, 135, 147]
       },
+      humidity : {
+        hour: [],
+        value: []
+      },
+      temperature : {
+        hour: [],
+        value: []
+      },
+      wind_speed : {
+        hour: [],
+        value: []
+      },
+      report_date: null
     }
   },
 
@@ -189,6 +213,7 @@ export default {
       this.$axios.get('weather')
         .then((response) => {
           this.items = response.data.data
+          this.getWeatherReport(this.items[0])
           this.show = true
         })
         .catch((error) => {
@@ -209,7 +234,22 @@ export default {
       }
     },
     getWeatherReport(item) {
+      this.stateLoading = true
       this.selectedItem = item.name
+      this.$axios.get('/history/' + item.id)
+        .then((response) => {
+          console.log(response)
+          this.wind_speed = Object.assign({},response.data.data.wind_speed)
+          this.temperature = Object.assign({},response.data.data.temperature)
+          this.humidity = Object.assign({},response.data.data.humidity)
+          this.report_date = response.data.data.report_date
+        })
+        .catch((error) => {
+          this.$toast.error(error.response.data.message)
+        })
+        .finally(() => {
+          this.stateLoading = false
+        })
     }
 
   },
